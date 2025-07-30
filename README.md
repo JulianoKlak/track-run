@@ -35,3 +35,46 @@ Aplicativo em desenvolvimento inspirado em jogos como *Run An Empire*, com foco 
 
 ```bash
 flutter pub get
+
+3. Rodar no navegador (Chrome)
+
+```bash
+flutter run -d chrome
+
+4. Rodar no Windows (desktop)
+Habilite o suporte a Windows se ainda não tiver feito:
+
+```bash
+flutter config --enable-windows-desktop
+flutter devices
+flutter run -d windows
+
+📁 Estrutura do Projeto
+
+```bash
+track_run/
+│
+├── lib/
+│   └── main.dart          # Ponto de entrada do app, com mapa OSM inicializado
+├── pubspec.yaml           # Dependências e metadados do projeto
+├── .gitignore             # Arquivos ignorados pelo Git
+└── README.md              # Este arquivo
+📌 Status
+🧪 Em desenvolvimento inicial — ainda não possui backend, persistência nem sistema de territórios ativado.
+
+📍 Próximos passos
+Implementar grade hexagonal usando H3 para marcação de territórios
+
+Adicionar persistência local e/ou em nuvem
+
+Criar sistema de contas e rankings
+
+Integração com Firebase ou Supabase
+
+Interface para histórico e estatísticas
+
+👨‍💻 Desenvolvedor
+Juliano Klak — github.com/JulianoKlak
+
+🌍 Licença
+Este projeto é open-source, licenciado sob a MIT License.
