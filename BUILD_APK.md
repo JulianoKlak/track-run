@@ -1,5 +1,9 @@
 # 📱 Guia para Gerar o APK do Track Run
 
+![App Icon Showcase](app_icon_showcase.png)
+
+![Icon Resolutions](app_icon_resolutions.png)
+
 ## ✅ Alterações Realizadas
 
 1. **Ícone do Aplicativo Atualizado** 🎨
