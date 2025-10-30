@@ -14,7 +14,7 @@ class LocationTrackingService {
   final CoordinateService _coordinateService = CoordinateService();
   final TrajectoryService _trajectoryService = TrajectoryService();
   final TerritoryService _territoryService = TerritoryService();
-  final h3 = H3();
+  final h3 = const H3Factory().load();
 
   StreamSubscription<Position>? _positionSubscription;
   Trajectory? _currentTrajectory;
@@ -97,10 +97,9 @@ class LocationTrackingService {
 
     // Calculate H3 index for this position
     final h3Index = h3.geoToH3(
-      position.latitude,
-      position.longitude,
+      GeoCoord(lat: position.latitude, lon: position.longitude),
       10, // Resolution 10 (hexagons ~15m across)
-    );
+    ).toRadixString(16); // Convert BigInt to hex string for storage
 
     // Save coordinate
     final coordinate = Coordinate(

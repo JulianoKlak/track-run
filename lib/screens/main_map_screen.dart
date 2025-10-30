@@ -24,7 +24,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
   final LocationTrackingService _trackingService = LocationTrackingService();
   final TerritoryService _territoryService = TerritoryService();
   final CoordinateService _coordinateService = CoordinateService();
-  final h3 = H3();
+  final h3 = const H3Factory().load();
 
   User? _currentUser;
   bool _isTracking = false;
@@ -133,9 +133,9 @@ class _MainMapScreenState extends State<MainMapScreen> {
 
     for (var territory in _territories) {
       try {
-        final boundary = h3.h3ToGeoBoundary(territory.h3Index);
+        final boundary = h3.h3ToGeoBoundary(BigInt.parse(territory.h3Index, radix: 16));
         final points = boundary
-            .map((coord) => LatLng(coord.lat, coord.lng))
+            .map((coord) => LatLng(coord.lat, coord.lon))
             .toList();
 
         final color = _parseColor(territory.color);
@@ -201,8 +201,8 @@ class _MainMapScreenState extends State<MainMapScreen> {
           : FlutterMap(
               mapController: _mapController,
               options: MapOptions(
-                center: _currentPosition,
-                zoom: 15.0,
+                initialCenter: _currentPosition ?? const LatLng(0, 0),
+                initialZoom: 15.0,
                 maxZoom: 18.0,
                 minZoom: 5.0,
               ),
@@ -221,7 +221,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
                         point: _currentPosition!,
                         width: 40,
                         height: 40,
-                        builder: (ctx) => Container(
+                        child: Container(
                           decoration: BoxDecoration(
                             color: Colors.blue,
                             shape: BoxShape.circle,

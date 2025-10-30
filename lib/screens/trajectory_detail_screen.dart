@@ -85,13 +85,13 @@ class _TrajectoryDetailScreenState extends State<TrajectoryDetailScreen> {
                       child: FlutterMap(
                         mapController: _mapController,
                         options: MapOptions(
-                          center: _coordinates.isNotEmpty
+                          initialCenter: _coordinates.isNotEmpty
                               ? LatLng(
                                   _coordinates.first.latitude,
                                   _coordinates.first.longitude,
                                 )
-                              : LatLng(-23.5505, -46.6333),
-                          zoom: 15.0,
+                              : const LatLng(-23.5505, -46.6333),
+                          initialZoom: 15.0,
                         ),
                         children: [
                           TileLayer(
@@ -122,7 +122,7 @@ class _TrajectoryDetailScreenState extends State<TrajectoryDetailScreen> {
                                   ),
                                   width: 40,
                                   height: 40,
-                                  builder: (ctx) => Container(
+                                  child: Container(
                                     decoration: BoxDecoration(
                                       color: Colors.green,
                                       shape: BoxShape.circle,
@@ -147,7 +147,7 @@ class _TrajectoryDetailScreenState extends State<TrajectoryDetailScreen> {
                                     ),
                                     width: 40,
                                     height: 40,
-                                    builder: (ctx) => Container(
+                                    child: Container(
                                       decoration: BoxDecoration(
                                         color: Colors.red,
                                         shape: BoxShape.circle,
